@@ -1,12 +1,11 @@
-import Head from 'next/head'
+import Meta from "../components/Meta";
+
 
 export default function about(){
 	return(
 		<div>
-			<Head>
-        <title> About Us</title>
-      </Head>
-			<h1> About </h1>
+			<Meta title={'About'}/>
+			<h3> This is just an another cliché practice blog site </h3>
 		</div>
 	)
 }

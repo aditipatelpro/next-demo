@@ -1,9 +1,12 @@
+import { server } from '../../../config/index'
 import Link from "next/link"
+import Meta from '../../../components/Meta'
 import { useRouter } from "next/router"
 
 export default function article({article}){
   return(
     <>
+      <Meta title={article.title}/>
       <h1> {article.title} </h1>
       <p> {article.body} </p>
       <br />
@@ -13,7 +16,7 @@ export default function article({article}){
 }
 
 export const getStaticProps = async (context) => {
-  const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`)
+  const response = await fetch(`${server}/api/articles/${context.params.id}`)
   const article = await response.json()
 
   return{
@@ -24,7 +27,7 @@ export const getStaticProps = async (context) => {
 }
 
 export const getStaticPaths = async () => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts`)
+  const res = await fetch(`${server}/api/articles`)
 
   const articles = await res.json()
 
